@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BloodTrace.Pages.HelpPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Blood is one of the most important necessity of our life. The numbers of blood donor is very less when compared with other countries. If you want to donate blood then consult your doctor first and then after the advice of doctor you can create a profile with this application and Save Humanity..." TextColor="#A5a7a8" Margin="0,40,0,0" FontSize="Medium"/>
+            <Label Text="If you need any help from our team feel free to call on 07950 235405" Margin="0,40,0,0" FontSize="Medium" TextColor="#a5a7a8"/>
+            <Image Source="helpandsupport.png" HeightRequest="80" WidthRequest="80" Margin="0,50,0,0"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
