@@ -11,19 +11,66 @@ using Xamarin.Forms.Xaml;
 using Plugin.Media.Abstractions;
 using BloodTrace.Models;
 using BloodTrace.Services;
+using System.IO;
 
 namespace BloodTrace.Pages
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class RegisterBloodPage : ContentPage
-	{
-
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class RegisterBloodPage : ContentPage
+    {
+        List<Estado> listaUF = null;
+        List<Cidade> listaCidade = null;
         public MediaFile file;
 
-		public RegisterBloodPage ()
-		{
-			InitializeComponent ();
-		}
+        public RegisterBloodPage()
+        {
+            InitializeComponent();
+
+            loadUFs();
+        }
+
+        private async void loadUFs()
+        {
+            showLoading(true);
+            PickerUF.IsEnabled = false;
+            ApiServices apiServies = new ApiServices();
+            List<Estado> response = await apiServies.ListarUFs();
+            if (response == null)
+            {
+                await DisplayAlert("Alert", "Somthing wrong...", "Cancel");
+            }
+            else
+            {
+                listaUF = new List<Estado>(response.OrderBy(x => x.Sigla).ToList());
+                PickerUF.ItemsSource = listaUF;
+            }
+            PickerUF.IsEnabled = true;
+            showLoading(false);
+        }
+        private async void loadCidades(int uf)
+        {
+            showLoading(true);
+            PickerCity.IsEnabled = false;
+            ApiServices apiServies = new ApiServices();
+            List<Cidade> response = await apiServies.ListarCidades(uf);
+            if (response == null)
+            {
+                await DisplayAlert("Alert", "Somthing wrong...", "Cancel");
+            }
+            else
+            {
+                listaCidade = new List<Cidade>(response.OrderBy(x => x.Nome));
+                PickerCity.ItemsSource = listaCidade;
+            }
+            PickerCity.IsEnabled = true;
+            showLoading(false);
+        }
+
+        private void showLoading(bool value)
+        {
+            actInd.IsVisible = value;
+            actInd.IsRunning = value;
+        }
 
         private async void TapOpenCamera_Tapped(object sender, EventArgs e)
         {
@@ -55,9 +102,14 @@ namespace BloodTrace.Pages
 
         private async void BtnSubmit_Clicked(object sender, EventArgs e)
         {
-            var imageArray = FilesHelper.ReadFully(file.GetStream());
-            file.Dispose();
-            var country = PickerCountry.Items[PickerCountry.SelectedIndex];
+            byte[] imageArray = null;
+            if (file != null)
+            {
+                imageArray = FilesHelper.ReadFully(file.GetStream());
+                file.Dispose();
+            }
+            var uf = PickerUF.Items[PickerUF.SelectedIndex];
+            var cidade = PickerCity.Items[PickerCity.SelectedIndex];
             var bloodGroup = PickerBloodGroup.Items[PickerBloodGroup.SelectedIndex];
 
             DateTime dateTime = DateTime.Now;
@@ -69,9 +121,8 @@ namespace BloodTrace.Pages
                 Email = EntEmail.Text,
                 Phone = EntPhone.Text,
                 BloodGroup = bloodGroup,
-                City = country,
-                State = country,
-                ImageArray = imageArray,
+                City = uf,
+                State = cidade,
                 Date = d
             };
 
@@ -84,6 +135,14 @@ namespace BloodTrace.Pages
             else
             {
                 await DisplayAlert("Hi", "Your record has been added successfully", "OK");
+            }
+        }
+
+        private void PickerUF_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (PickerUF.SelectedItem is Estado uf)
+            {
+                loadCidades(uf.Id);
             }
         }
     }

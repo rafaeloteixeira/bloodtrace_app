@@ -20,7 +20,7 @@ namespace BloodTrace.Pages
 		public DonorProfilePage (BloodUser bloodUser)
 		{
 			InitializeComponent ();
-            ImgDonor.Source = bloodUser.FullLogoPath;
+            //ImgDonor.Source = bloodUser.FullLogoPath;
             LblDonorName.Text = bloodUser.UserName;
             LblBloodGroup.Text = bloodUser.BloodGroup;
             LblCountry.Text = bloodUser.City;

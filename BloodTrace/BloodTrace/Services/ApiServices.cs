@@ -26,7 +26,7 @@ namespace BloodTrace.Services
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await httpClient.PostAsync("http://mybloodapp.azurewebsites.net/api/Account/Register", content);
             return response.IsSuccessStatusCode;
-  
+
         }
 
         public async Task<bool> LoginUser(string email, string password)
@@ -76,8 +76,25 @@ namespace BloodTrace.Services
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccessToken);
             var bloodApiUrl = "http://mybloodapp.azurewebsites.net/api/BloodUsers";
-            var response = await httpClient.PostAsync(bloodApiUrl,content);
+            var response = await httpClient.PostAsync(bloodApiUrl, content);
             return response.IsSuccessStatusCode;
+        }
+
+        public async Task<List<Estado>> ListarUFs()
+        {
+            var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccessToken);
+            var ibgeUrl = "https://servicodados.ibge.gov.br/api/v1/localidades/estados";
+            var json = await httpClient.GetStringAsync(ibgeUrl);
+            return JsonConvert.DeserializeObject<List<Estado>>(json);
+        }
+        public async Task<List<Cidade>> ListarCidades(int UF)
+        {
+            var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccessToken);
+            var ibgeUrl = "https://servicodados.ibge.gov.br/api/v1/localidades/estados/" + UF + "/municipios";
+            var json = await httpClient.GetStringAsync(ibgeUrl);
+            return JsonConvert.DeserializeObject<List<Cidade>>(json);
         }
     }
 }
