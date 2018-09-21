@@ -121,8 +121,8 @@ namespace BloodTrace.Pages
                 Email = EntEmail.Text,
                 Phone = EntPhone.Text,
                 BloodGroup = bloodGroup,
-                City = uf,
-                State = cidade,
+                City = cidade,
+                State = uf,
                 Date = d
             };
 

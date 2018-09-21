@@ -23,8 +23,10 @@ namespace BloodTrace.Services
                     ConfirmPassword = confirmPassword
                 };
 
-                var httpClient = new HttpClient();
-
+                var httpClient = new HttpClient(new HttpClientHandler
+                {
+                    UseProxy = false
+                });
                 var json = JsonConvert.SerializeObject(registerModel);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 var response = await httpClient.PostAsync("http://mybloodapp.azurewebsites.net/api/Account/Register", content);
@@ -52,7 +54,10 @@ namespace BloodTrace.Services
 
                 var request = new HttpRequestMessage(HttpMethod.Post, "http://mybloodapp.azurewebsites.net/Token");
                 request.Content = new FormUrlEncodedContent(keyvalues);
-                var httpClient = new HttpClient();
+                var httpClient = new HttpClient(new HttpClientHandler
+                {
+                    UseProxy = false
+                });
                 var response = await httpClient.SendAsync(request);
                 var content = await response.Content.ReadAsStringAsync();
                 JObject jObject = JsonConvert.DeserializeObject<dynamic>(content);
@@ -72,7 +77,10 @@ namespace BloodTrace.Services
 
         public async Task<List<BloodUser>> FindBlood(string state, string city, string bloodType)
         {
-            var httpClient = new HttpClient();
+            var httpClient = new HttpClient(new HttpClientHandler
+            {
+                UseProxy = false
+            });
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccessToken);
             var bloodApiUrl = "http://mybloodapp.azurewebsites.net/api/BloodUsers";
             var json = await httpClient.GetStringAsync($"{bloodApiUrl}?bloodGroup={bloodType}&city={city}&state={state}");
@@ -81,7 +89,10 @@ namespace BloodTrace.Services
 
         public async Task<List<BloodUser>> LatestBloodUser()
         {
-            var httpClient = new HttpClient();
+            var httpClient = new HttpClient(new HttpClientHandler
+            {
+                UseProxy = false
+            });
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccessToken);
             var bloodApiUrl = "http://mybloodapp.azurewebsites.net/api/BloodUsers";
             var json = await httpClient.GetStringAsync(bloodApiUrl);
@@ -94,7 +105,10 @@ namespace BloodTrace.Services
             try
             {
                 var json = JsonConvert.SerializeObject(bloodUser);
-                var httpClient = new HttpClient();
+                var httpClient = new HttpClient(new HttpClientHandler
+                {
+                    UseProxy = false
+                });
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccessToken);
                 var bloodApiUrl = "http://mybloodapp.azurewebsites.net/api/BloodUsers";
@@ -111,7 +125,10 @@ namespace BloodTrace.Services
 
         public async Task<List<Estado>> ListarUFs()
         {
-            var httpClient = new HttpClient();
+            var httpClient = new HttpClient(new HttpClientHandler
+            {
+                UseProxy = false
+            });
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccessToken);
             var ibgeUrl = "https://servicodados.ibge.gov.br/api/v1/localidades/estados";
             var json = await httpClient.GetStringAsync(ibgeUrl);
@@ -119,7 +136,10 @@ namespace BloodTrace.Services
         }
         public async Task<List<Cidade>> ListarCidades(int UF)
         {
-            var httpClient = new HttpClient();
+            var httpClient = new HttpClient(new HttpClientHandler
+            {
+                UseProxy = false
+            });
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccessToken);
             var ibgeUrl = "https://servicodados.ibge.gov.br/api/v1/localidades/estados/" + UF + "/municipios";
             var json = await httpClient.GetStringAsync(ibgeUrl);

@@ -11,15 +11,18 @@ using Xamarin.Forms.Xaml;
 
 namespace BloodTrace.Pages
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class DonorProfilePage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class DonorProfilePage : ContentPage
+    {
         private string _email;
         private string _phoneNumber;
-
-		public DonorProfilePage (BloodUser bloodUser)
-		{
-			InitializeComponent ();
+        public DonorProfilePage()
+        {
+            InitializeComponent();
+        }
+        public DonorProfilePage(BloodUser bloodUser)
+        {
+            InitializeComponent();
 
             LblDonorName.Text = bloodUser.UserName;
             LblBloodGroup.Text = bloodUser.BloodGroup;
@@ -27,9 +30,17 @@ namespace BloodTrace.Pages
             lblUf.Text = bloodUser.State;
             _email = bloodUser.Email;
             _phoneNumber = bloodUser.Phone;
-		}
+        }
 
-        private void TapEmail_Tapped(object sender, EventArgs e)
+        private void btnLigar_Clicked(object sender, EventArgs e)
+        {
+            var phoneDialer = CrossMessaging.Current.PhoneDialer;
+            if (phoneDialer.CanMakePhoneCall)
+                phoneDialer.MakePhoneCall(_phoneNumber);
+
+        }
+
+        private void btnEmail_Clicked(object sender, EventArgs e)
         {
             var emailMessenger = CrossMessaging.Current.EmailMessenger;
             if (emailMessenger.CanSendEmail)
@@ -38,14 +49,6 @@ namespace BloodTrace.Pages
                 emailMessenger.SendEmail(_email, "[Add a subject]", "[Write email body]");
 
             }
-        }
-
-            private void TapPhone_Tapped(object sender, EventArgs e)
-        {
-            // Make Phone Call
-            var phoneDialer = CrossMessaging.Current.PhoneDialer;
-            if (phoneDialer.CanMakePhoneCall)
-                phoneDialer.MakePhoneCall(_phoneNumber);
         }
     }
 }

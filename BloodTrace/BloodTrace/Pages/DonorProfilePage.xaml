@@ -20,19 +20,12 @@
                 <Label Text="Estado" TextColor="#707070"/>
                 <Label x:Name="lblUf" TextColor="Black"/>
             </StackLayout>
-            <StackLayout Orientation="Horizontal" BackgroundColor="#f5f5f5" >
-                <Image Source="call.png" HorizontalOptions="FillAndExpand">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer x:Name="TapPhone" NumberOfTapsRequired="1" Tapped="TapPhone_Tapped"/>
-                    </Image.GestureRecognizers>
-                </Image>
-                
-                <Image Source="email.png" HorizontalOptions="FillAndExpand">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer x:Name="TapEmail" NumberOfTapsRequired="1" Tapped="TapEmail_Tapped"/>
-                    </Image.GestureRecognizers>
-                </Image>
-                
+            <StackLayout Orientation="Horizontal" BackgroundColor="#f5f5f5" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
+                <Button Text="Ligar" BackgroundColor="{StaticResource colorRed}" TextColor="White" x:Name="btnLigar" Clicked="btnLigar_Clicked"/>
+
+                <Button Text="E-Mail" BackgroundColor="{StaticResource colorRed}" TextColor="White" x:Name="btnEmail" Clicked="btnEmail_Clicked"/>
+
+
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
