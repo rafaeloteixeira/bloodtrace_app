@@ -4,31 +4,23 @@
              x:Class="BloodTrace.Pages.LatestDonorsPage"
              BackgroundColor="White">
     <ContentPage.Content>
-        <ListView x:Name="LvBloodDonors" Margin="5" ItemSelected="LvBloodDonors_ItemSelected">
+        <ListView x:Name="LvBloodDonors" HasUnevenRows="True" SeparatorColor="{StaticResource colorRed}"
+                  Margin="5" ItemSelected="LvBloodDonors_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.25*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Image Source="{Binding FullLogoPath}" 
-                                   HorizontalOptions="Center" 
-                                   VerticalOptions="Center" 
-                                   WidthRequest="80" 
-                                   HeightRequest="80" 
-                                   Grid.Row="0" 
-                                   Grid.Column="0"/>
-                            <StackLayout Grid.Row="0" Grid.Column="1" Margin="5,5,0,0">
+                        <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Horizontal">
                                 <Label Text="{Binding UserName}" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
+                                <Label Text=": " VerticalOptions="Center" FontSize="16" TextColor="Black"/>
                                 <Label Text="{Binding BloodGroup}" VerticalOptions="Center" FontSize="16" TextColor="#e96950"/>
-                                <Label Text="{Binding Country}" VerticalOptions="Center" FontSize="16" TextColor="#a5a7a8"/>
+                            </StackLayout>                            
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding City}" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
+                                <Label Text="/" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
+                                <Label Text="{Binding State}" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
                             </StackLayout>
-                        </Grid>
+                        </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

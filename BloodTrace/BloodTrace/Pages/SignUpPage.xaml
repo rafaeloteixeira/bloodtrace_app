@@ -10,7 +10,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Image Source="bloodlogo.png" Grid.Row="0" Margin="0,40,0,0" HeightRequest="200" WidthRequest="200"/>
+            <Image Source="splash_background.png" Grid.Row="0" Margin="0,40,0,0" HeightRequest="200" WidthRequest="200"/>
             <StackLayout Grid.Row="1" Margin="40,20,40,0">
                 <Entry x:Name="EntEmail" Placeholder="E-mail" PlaceholderColor="#707070"/>
                 <Entry x:Name="EntPassword" IsPassword="True" Placeholder="Senha" PlaceholderColor="#707070"/>

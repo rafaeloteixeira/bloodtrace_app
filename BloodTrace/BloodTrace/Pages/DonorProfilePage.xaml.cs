@@ -20,10 +20,11 @@ namespace BloodTrace.Pages
 		public DonorProfilePage (BloodUser bloodUser)
 		{
 			InitializeComponent ();
-            //ImgDonor.Source = bloodUser.FullLogoPath;
+
             LblDonorName.Text = bloodUser.UserName;
             LblBloodGroup.Text = bloodUser.BloodGroup;
-            LblCountry.Text = bloodUser.City;
+            lblCidade.Text = bloodUser.City;
+            lblUf.Text = bloodUser.State;
             _email = bloodUser.Email;
             _phoneNumber = bloodUser.Phone;
 		}

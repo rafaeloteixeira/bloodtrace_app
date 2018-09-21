@@ -69,7 +69,7 @@ namespace BloodTrace.Pages
         {
             var bloodGroup = PickerBloodGroup.Items[PickerBloodGroup.SelectedIndex].Trim().Replace("+", "%2B");
             var uf = PickerUF.Items[PickerUF.SelectedIndex];
-            var cidade = PickerCity.Items[PickerCity.SelectedIndex];
+            var cidade = PickerCity.Items[PickerCity.SelectedIndex].Trim().Replace(" ", "%20");
 
             Navigation.PushAsync(new DonorsListPage(cidade,uf, bloodGroup));
         }
