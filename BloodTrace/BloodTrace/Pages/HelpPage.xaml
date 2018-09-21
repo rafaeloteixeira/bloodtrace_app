@@ -2,10 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BloodTrace.Pages.HelpPage"
-             BackgroundColor="White">
+             BackgroundColor="White"  Title="Ajuda">
     <ContentPage.Content>
         <StackLayout Margin="40">
-            <Label Text="Doação de sangue é o processo pelo qual um doador voluntário tem seu sangue coletado para armazenamento em um banco de sangue ou hemocentro para um uso subsequente em uma transfusão de sangue." TextColor="#A5a7a8" Margin="0,40,0,0" FontSize="Medium"/>
+            <Label Text="Doação de sangue é o processo pelo qual um doador voluntário tem seu sangue coletado para armazenamento em um banco de sangue ou hemocentro para um uso subsequente em uma transfusão de sangue." TextColor="{StaticResource colorRed}" FontAttributes="Bold" Margin="0,40,0,0" FontSize="Medium"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

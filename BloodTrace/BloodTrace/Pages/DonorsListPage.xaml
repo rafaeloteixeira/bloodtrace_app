@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BloodTrace.Pages.DonorsListPage"
-             BackgroundColor="White">
+             BackgroundColor="White" Title="Lista de Doadores">
     <ContentPage.Content>
         <ListView x:Name="LvBloodDonors" HasUnevenRows="True" 
                   ItemSelected="LvBloodDonors_ItemSelected" SeparatorColor="{StaticResource colorRed}">

@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BloodTrace.Pages.DonorProfilePage"
-             BackgroundColor="White">
+             BackgroundColor="White" Title="Perfil do Doador">
     <ContentPage.Content>
         <StackLayout Margin="40">
             <Label x:Name="LblDonorName" Text="{Binding UserName}" HorizontalTextAlignment="Center"  FontSize="Large"
