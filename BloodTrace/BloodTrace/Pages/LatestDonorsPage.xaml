@@ -4,26 +4,29 @@
              x:Class="BloodTrace.Pages.LatestDonorsPage"
              BackgroundColor="White" Title="Doadores Recentes">
     <ContentPage.Content>
-        <ListView x:Name="LvBloodDonors" HasUnevenRows="True" SeparatorColor="{StaticResource colorRed}"
+        <Grid>
+            <ActivityIndicator x:Name="actInd" Color="Red" Margin="150" />
+            <ListView x:Name="LvBloodDonors" HasUnevenRows="True" SeparatorColor="{StaticResource colorRed}"
                   Margin="5" ItemSelected="LvBloodDonors_ItemSelected">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding UserName}" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
-                                <Label Text=": " VerticalOptions="Center" FontSize="16" TextColor="Black"/>
-                                <Label Text="{Binding BloodGroup}" VerticalOptions="Center" FontSize="16" TextColor="#e96950"/>
-                            </StackLayout>                            
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding City}" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
-                                <Label Text="/" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
-                                <Label Text="{Binding State}" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding UserName}" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
+                                    <Label Text=": " VerticalOptions="Center" FontSize="16" TextColor="Black"/>
+                                    <Label Text="{Binding BloodGroup}" VerticalOptions="Center" FontSize="16" TextColor="#e96950"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding City}" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
+                                    <Label Text="/" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
+                                    <Label Text="{Binding State}" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
+                                </StackLayout>
                             </StackLayout>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

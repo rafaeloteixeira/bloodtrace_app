@@ -32,6 +32,8 @@ namespace BloodTrace.Pages
 
         private async void FindBloodDonors()
         {
+            showLoading(true);
+
             ApiServices apiServices = new ApiServices();
             var bloodUsers = await apiServices.FindBlood(_state, _city, _bloodGroup);
             foreach (var bloodUser in bloodUsers)
@@ -40,6 +42,13 @@ namespace BloodTrace.Pages
             }
 
             LvBloodDonors.ItemsSource = BloodUsers;
+
+            showLoading(false);
+        }
+        private void showLoading(bool value)
+        {
+            actInd.IsVisible = value;
+            actInd.IsRunning = value;
         }
 
         private void LvBloodDonors_ItemSelected(object sender, SelectedItemChangedEventArgs e)
