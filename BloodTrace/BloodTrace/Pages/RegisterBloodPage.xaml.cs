@@ -37,7 +37,7 @@ namespace BloodTrace.Pages
             List<Estado> response = await apiServies.ListarUFs();
             if (response == null)
             {
-                await DisplayAlert("Alert", "Somthing wrong...", "Cancel");
+                await DisplayAlert("Atenção", "Alguma coisa deu errado...", "Cancelar");
             }
             else
             {
@@ -55,7 +55,7 @@ namespace BloodTrace.Pages
             List<Cidade> response = await apiServies.ListarCidades(uf);
             if (response == null)
             {
-                await DisplayAlert("Alert", "Somthing wrong...", "Cancel");
+                await DisplayAlert("Atenção", "Alguma coisa deu errado...", "Cancelar");
             }
             else
             {
@@ -78,7 +78,7 @@ namespace BloodTrace.Pages
 
             if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
             {
-                await DisplayAlert("No Camera", ":( No camera available.", "OK");
+                await DisplayAlert("Sem câmera", ":( Nenhuma câmera disponível.", "OK");
                 return;
             }
 
@@ -91,7 +91,7 @@ namespace BloodTrace.Pages
             if (file == null)
                 return;
 
-            await DisplayAlert("File Location", file.Path, "OK");
+            await DisplayAlert("Local do Arquivo", file.Path, "OK");
 
             ImgDonor.Source = ImageSource.FromStream(() =>
             {
@@ -130,11 +130,11 @@ namespace BloodTrace.Pages
             var response = await apiServies.RegisterDonor(bloodUser);
             if (!response)
             {
-                await DisplayAlert("Alert", "Somthing wrong...", "Cancel");
+                await DisplayAlert("Atenção", "Alguma coisa deu errado...", "Cancelar");
             }
             else
             {
-                await DisplayAlert("Hi", "Your record has been added successfully", "OK");
+                await DisplayAlert("Olá", "Seu registro foi efetuado com sucesso!", "OK");
             }
         }
 

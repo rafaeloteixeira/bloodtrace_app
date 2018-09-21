@@ -24,11 +24,11 @@ namespace BloodTrace.Pages
             bool response = await apiServices.RegisterUser(EntEmail.Text, EntPassword.Text, EntConfirmPassword.Text);
             if (!response)
             {
-                await DisplayAlert("Alert", "Somthing wrong...", "Cancel");
+                await DisplayAlert("Atenção", "Alguma coisa deu errado...", "Cancelar");
             }
             else
             {
-                await DisplayAlert("Hi", "Your account has been created", "OK");
+                await DisplayAlert("Olá", "Seu registro foi efetuado com sucesso!", "OK");
                 await Navigation.PopToRootAsync();
             }
         }

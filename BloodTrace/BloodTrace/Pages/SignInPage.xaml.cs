@@ -25,7 +25,7 @@ namespace BloodTrace.Pages
             bool response = await apiServices.LoginUser(EntEmail.Text, EntPassword.Text);
             if(!response)
             {
-                await DisplayAlert("Alert", "Something wrong...", "Cancel");
+                await DisplayAlert("Atenção", "Alguma coisa deu errado...", "Cancelar");
             }
             else
             {

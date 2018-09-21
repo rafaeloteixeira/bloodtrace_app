@@ -12,10 +12,10 @@
 
             <Image Source="bloodlogo.png" Grid.Row="0" Margin="0,40,0,0" HeightRequest="200" WidthRequest="200"/>
             <StackLayout Grid.Row="1" Margin="40,20,40,0">
-                <Entry x:Name="EntEmail" Placeholder="Email" PlaceholderColor="#707070"/>
-                <Entry x:Name="EntPassword" IsPassword="True" Placeholder="Password" PlaceholderColor="#707070"/>
-                <Entry x:Name="EntConfirmPassword" IsPassword="True" Placeholder="Confirm Password" PlaceholderColor="#707070"/>
-                <Button x:Name="BtnSignUp" Text="SIGN UP" BackgroundColor="#c62729" TextColor="White" Clicked="BtnSignUp_Clicked"/>
+                <Entry x:Name="EntEmail" Placeholder="E-mail" PlaceholderColor="#707070"/>
+                <Entry x:Name="EntPassword" IsPassword="True" Placeholder="Senha" PlaceholderColor="#707070"/>
+                <Entry x:Name="EntConfirmPassword" IsPassword="True" Placeholder="Confirmar Senha" PlaceholderColor="#707070"/>
+                <Button x:Name="BtnSignUp" Text="Registrar" BackgroundColor="#c62729" TextColor="White" Clicked="BtnSignUp_Clicked"/>
             </StackLayout>
         </Grid>
             

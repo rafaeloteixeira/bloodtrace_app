@@ -7,8 +7,9 @@
         <!-- Application Resource dictionary -->
         
         <ResourceDictionary>
+            <Color x:Key="colorRed">#b50000</Color>
             <Style TargetType="NavigationPage">
-            <Setter Property="BarBackgroundColor" Value="#e96950"/>
+            <Setter Property="BarBackgroundColor" Value="{StaticResource colorRed}"/>
             <Setter Property="BarTextColor" Value="White"/>
         </Style>
         </ResourceDictionary>
